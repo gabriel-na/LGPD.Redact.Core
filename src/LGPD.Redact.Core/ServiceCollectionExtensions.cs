@@ -1,6 +1,8 @@
+using LGPD.Redact.Core;
 using LGPD.Redact.Core.Redactors;
 using LGPD.Redact.Core.Taxonomies;
 using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -39,6 +41,23 @@ public static class ServiceCollectionExtensions
                 builder.SetFallbackRedactor<NullRedactor>();
             }
         });
+
+        services.TryAddSingleton<CartaoCreditoRedactor>();
+        services.TryAddSingleton<CEPRedactor>();
+        services.TryAddSingleton<CNPJRedactor>();
+        services.TryAddSingleton<CPFRedactor>();
+        services.TryAddSingleton<EmailRedactor>();
+        services.TryAddSingleton<EnderecoRedactor>();
+        services.TryAddSingleton<NomeRedactor>();
+        services.TryAddSingleton<PixRedactor>();
+        services.TryAddSingleton<TelefoneRedactor>();
+        services.TryAddSingleton<EnderecoIPRedactor>();
+        services.TryAddSingleton<MacAddressRedactor>();
+        services.TryAddSingleton<GeolocalizacaoRedactor>();
+        services.TryAddSingleton<CNHRedactor>();
+        services.TryAddSingleton<TituloEleitorRedactor>();
+
+        services.TryAddSingleton<ILGPDRedactService, LGPDRedactService>();
 
         return services;
     }
