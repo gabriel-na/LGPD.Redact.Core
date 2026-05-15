@@ -14,6 +14,17 @@
 dotnet add package LGPD.Redact.Core
 ```
 
+Registre os servicos no DI com `AddLGPDRedaction()`:
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddLGPDRedaction();
+builder.Logging.EnableRedaction(options => options.ApplyDiscriminator = false);
+```
+
 > **Importante**: O nome do parâmetro do método deve corresponder exatamente ao nome do placeholder na mensagem do `[LoggerMessage]`. O source generator do Microsoft.Extensions.Logging valida essa correspondência em tempo de build.
 
 ```csharp
@@ -27,6 +38,7 @@ public static partial void LogNome(this ILogger logger, [NomeData] string nome);
 ```
 
 ---
+
 ## Atributos Suportados
 
 | Atributo | O que faz? | Exemplo Original | Exemplo Redigido |
@@ -46,6 +58,48 @@ public static partial void LogNome(this ILogger logger, [NomeData] string nome);
 | `[GeolocalizacaoData]` | Mascara parte decimal de latitude e longitude | `-23.5505, -46.6333` | `-23.****, -46.****` |
 | `[CNHData]` | Preserva 3 primeiros e 2 ultimos digitos | `12345678901` | `123******01` |
 | `[TituloEleitorData]` | Preserva 4 primeiros e 4 ultimos digitos | `1234.5678.9012` | `1234.****.9012` |
+
+---
+
+## Uso com `ILGPDRedactService`
+
+Injete `ILGPDRedactService` e utilize o enum `DadoPessoal` para redigir valores avulsos sem precisar lidar com `DataClassification`:
+
+```csharp
+public class MeuServico
+{
+    private readonly ILGPDRedactService _redact;
+
+    public MeuServico(ILGPDRedactService redact) => _redact = redact;
+
+    public void Executar()
+    {
+        string cpf = _redact.Redact(DadoPessoal.CPF, "123.456.789-09");
+        string email = _redact.Redact(DadoPessoal.Email, "usuario@example.com");
+    }
+}
+```
+
+### Enum `DadoPessoal`
+
+Cada valor do enum mapeia para um tipo de dado pessoal:
+
+| Valor | Descricao |
+| :--- | :--- |
+| `CPF` | Cadastro de Pessoas Físicas |
+| `CNPJ` | Cadastro Nacional da Pessoa Jurídica |
+| `Nome` | Nome completo |
+| `Endereco` | Endereco completo |
+| `Telefone` | Telefone fixo ou celular |
+| `Email` | Endereco de e-mail |
+| `CartaoCredito` | Número do cartão de crédito |
+| `CEP` | Código de Enderecamento Postal |
+| `Pix` | Chave aleatória Pix |
+| `EnderecoIP` | Endereco IPv4 ou IPv6 |
+| `MacAddress` | Endereco MAC |
+| `Geolocalizacao` | Coordenadas de latitude e longitude |
+| `CNH` | Carteira Nacional de Habilitacao |
+| `TituloEleitor` | Titulo de Eleitor |
 
 ---
 
