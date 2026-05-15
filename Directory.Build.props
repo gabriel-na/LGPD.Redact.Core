@@ -17,8 +17,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>lgpd;redact;pii;data-privacy;compliance;brazil;cpf;cnpj</PackageTags>
-    <RepositoryUrl>https://github.com/gabrielalbuquerque/lgpd_redact</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/gabrielalbuquerque/lgpd_redact</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gabriel-na/LGPD.Redact</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/gabriel-na/LGPD.Redact</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 </Project>
