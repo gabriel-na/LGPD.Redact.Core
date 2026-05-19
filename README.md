@@ -44,12 +44,14 @@ public static partial void LogNome(this ILogger logger, [NomeData] string nome);
 | Atributo | O que faz? | Exemplo Original | Exemplo Redigido |
 | :--- | :--- | :--- | :--- |
 | `[CPFData]` | Preserva 3 primeiros e 2 ultimos digitos | `123.456.789-01` | `123.***.***-01` |
-| `[CNPJData]` | Preserva raiz (2 digitos) e radical (6 ultimos) | `12.345.678/0001-90` | `12.***.***/0001-90` |
+| `[CNPJData]` | Preserva raiz (2 caracteres) e radical (6 ultimos) | `12.345.678/0001-90` | `12.***.***/0001-90` |
+| &nbsp; | &nbsp; | `AB.CDE.FGH/0001-90` | `AB.***.***/0001-90` |
 | `[EmailData]` | Preserva inicial e dominio | `felipe.siqueira@gmail.com` | `f**************@gmail.com` |
 | `[TelefoneData]` | Preserva DDD, 1 digito apos DDD e 4 ultimos | `(11) 98888-4444` | `(11) 9****-4444` |
 | `[CEPData]` | Mascara os 3 ultimos digitos | `01310-900` | `01310-***` |
 | `[NomeData]` | Mantem apenas as iniciais de cada palavra | `Maria da Silva` | `M**** d* S****` |
 | `[EnderecoData]` | Mantem apenas as iniciais, oculta numeros | `Avenida Paulista, 1000` | `A****** P*******, ****` |
+| `[GuidData]` | Mascara GUID mantendo 4 primeiros e 4 ultimos hex digitos | `e8d26618-2e11-4b22-8d26-66182e114b22` | `e8d2****-****-****-****-*******4b22` |
 | `[PixData]` | Mascara chave aleatoria mantendo 4 primeiros e 8 ultimos | `e8d26618-2e11-4b22-8d26-66182e114b22` | `e8d2****-****-****-****-****2e114b22` |
 | `[CartaoCreditoData]` | Preserva 4 primeiros e 4 ultimos digitos | `4532 1178 9012 3456` | `4532 **** **** 3456` |
 | `[EnderecoIPData]` | Mascara os 2 ultimos octetos (IPv4) e os ultimos 3 grupos (IPv6) | `192.168.1.100` | `192.168.*.***` |
@@ -58,6 +60,22 @@ public static partial void LogNome(this ILogger logger, [NomeData] string nome);
 | `[GeolocalizacaoData]` | Mascara parte decimal de latitude e longitude | `-23.5505, -46.6333` | `-23.****, -46.****` |
 | `[CNHData]` | Preserva 3 primeiros e 2 ultimos digitos | `12345678901` | `123******01` |
 | `[TituloEleitorData]` | Preserva 4 primeiros e 4 ultimos digitos | `1234.5678.9012` | `1234.****.9012` |
+| `[PlacaData]` | Mascara numeros (padrao antigo) e caracteres apos prefixo (Mercosul) | `ABC-1234` | `ABC-****` |
+| &nbsp; | &nbsp; | `ABC1D23` | `ABC****` |
+| `[RenavamData]` | Preserva 3 primeiros e 3 ultimos digitos | `12345678901` | `123*****901` |
+| `[PISData]` | Preserva 3 primeiros e digito verificador | `123.45678.90-1` | `123.*****.**-1` |
+| &nbsp; | &nbsp; | `12345678901` | `123*******1` |
+| `[CNSData]` | Preserva 3 primeiros e 4 ultimos | `123 4567 8901 2345` | `123 **** **** 2345` |
+| &nbsp; | &nbsp; | `123456789012345` | `123********2345` |
+| `[CTPSData]` | Preserva 3 primeiros e 3 ultimos | `1234567890` | `123****890` |
+| `[CertidaoData]` | Preserva 6 primeiros e 2 verificadores | `123456.78.1234.5.6.7890.1.12345-67` | `123456.**.****.*.*.****.*.*****-67` |
+| `[DataGenericaData]` | Preserva ano, mascara dia/mes | `15/03/1990` | `**/**/1990` |
+| &nbsp; | &nbsp; | `1990-03-15` | `1990-**-**` |
+| `[ContaBancariaData]` | Preserva operacao e digito, mascara conta | `013.123456-7` | `013.******-7` |
+| &nbsp; | &nbsp; | `12345-6` | `*****-6` |
+| `[PassaporteData]` | Preserva prefixo letras e 2 ultimos digitos | `AB123456` | `AB****56` |
+| &nbsp; | &nbsp; | `123456789` | `*******89` |
+| `[RNEData]` | Preserva letra prefixo e digito verificador | `V1234567-8` | `V*******-8` |
 
 ---
 
@@ -94,12 +112,23 @@ Cada valor do enum mapeia para um tipo de dado pessoal:
 | `Email` | Endereco de e-mail |
 | `CartaoCredito` | Número do cartão de crédito |
 | `CEP` | Código de Enderecamento Postal |
+| `Guid` | Identificador GUID/UUID |
 | `Pix` | Chave aleatória Pix |
 | `EnderecoIP` | Endereco IPv4 ou IPv6 |
 | `MacAddress` | Endereco MAC |
 | `Geolocalizacao` | Coordenadas de latitude e longitude |
 | `CNH` | Carteira Nacional de Habilitacao |
 | `TituloEleitor` | Titulo de Eleitor |
+| `Placa` | Placa de veiculo (antiga ou Mercosul) |
+| `Renavam` | Renavam do veiculo |
+| `PIS` | PIS/PASEP/NIT |
+| `CNS` | Cartao Nacional de Saude (SUS) |
+| `CTPS` | Carteira de Trabalho |
+| `Certidao` | Certidao de nascimento/casamento/obito (CNJ) |
+| `DataGenerica` | Data no formato brasileiro ou ISO |
+| `ContaBancaria` | Conta bancaria (operacao + conta + digito) |
+| `Passaporte` | Passaporte (nacional ou estrangeiro) |
+| `RNE` | Registro Nacional de Estrangeiros / RNM |
 
 ---
 

@@ -16,12 +16,23 @@ public class LGPDRedactService : ILGPDRedactService
         [DadoPessoal.Email] = LGPDTaxonomy.Email,
         [DadoPessoal.CartaoCredito] = LGPDTaxonomy.CartaoCredito,
         [DadoPessoal.CEP] = LGPDTaxonomy.CEP,
+        [DadoPessoal.Guid] = LGPDTaxonomy.Guid,
         [DadoPessoal.Pix] = LGPDTaxonomy.Pix,
         [DadoPessoal.EnderecoIP] = LGPDTaxonomy.EnderecoIP,
         [DadoPessoal.MacAddress] = LGPDTaxonomy.MacAddress,
         [DadoPessoal.Geolocalizacao] = LGPDTaxonomy.Geolocalizacao,
         [DadoPessoal.CNH] = LGPDTaxonomy.CNH,
         [DadoPessoal.TituloEleitor] = LGPDTaxonomy.TituloEleitor,
+        [DadoPessoal.Placa] = LGPDTaxonomy.Placa,
+        [DadoPessoal.Renavam] = LGPDTaxonomy.Renavam,
+        [DadoPessoal.PIS] = LGPDTaxonomy.PIS,
+        [DadoPessoal.CNS] = LGPDTaxonomy.CNS,
+        [DadoPessoal.CTPS] = LGPDTaxonomy.CTPS,
+        [DadoPessoal.Certidao] = LGPDTaxonomy.Certidao,
+        [DadoPessoal.DataGenerica] = LGPDTaxonomy.DataGenerica,
+        [DadoPessoal.ContaBancaria] = LGPDTaxonomy.ContaBancaria,
+        [DadoPessoal.Passaporte] = LGPDTaxonomy.Passaporte,
+        [DadoPessoal.RNE] = LGPDTaxonomy.RNE,
     };
 
     private readonly IRedactorProvider _provider;

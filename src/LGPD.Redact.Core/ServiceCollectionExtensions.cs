@@ -27,6 +27,7 @@ public static class ServiceCollectionExtensions
                 builder.SetRedactor<EmailRedactor>(LGPDTaxonomy.Email);
                 builder.SetRedactor<EnderecoRedactor>(LGPDTaxonomy.Endereco);
                 builder.SetRedactor<NomeRedactor>(LGPDTaxonomy.Nome);
+                builder.SetRedactor<GuidRedactor>(LGPDTaxonomy.Guid);
                 builder.SetRedactor<PixRedactor>(LGPDTaxonomy.Pix);
                 builder.SetRedactor<TelefoneRedactor>(LGPDTaxonomy.Telefone);
                 builder.SetRedactor<EnderecoIPRedactor>(LGPDTaxonomy.EnderecoIP);
@@ -34,6 +35,16 @@ public static class ServiceCollectionExtensions
                 builder.SetRedactor<GeolocalizacaoRedactor>(LGPDTaxonomy.Geolocalizacao);
                 builder.SetRedactor<CNHRedactor>(LGPDTaxonomy.CNH);
                 builder.SetRedactor<TituloEleitorRedactor>(LGPDTaxonomy.TituloEleitor);
+                builder.SetRedactor<PlacaRedactor>(LGPDTaxonomy.Placa);
+                builder.SetRedactor<RenavamRedactor>(LGPDTaxonomy.Renavam);
+                builder.SetRedactor<PISRedactor>(LGPDTaxonomy.PIS);
+                builder.SetRedactor<CNSRedactor>(LGPDTaxonomy.CNS);
+                builder.SetRedactor<CTPSRedactor>(LGPDTaxonomy.CTPS);
+                builder.SetRedactor<CertidaoRedactor>(LGPDTaxonomy.Certidao);
+                builder.SetRedactor<DataGenericaRedactor>(LGPDTaxonomy.DataGenerica);
+                builder.SetRedactor<ContaBancariaRedactor>(LGPDTaxonomy.ContaBancaria);
+                builder.SetRedactor<PassaporteRedactor>(LGPDTaxonomy.Passaporte);
+                builder.SetRedactor<RNERedactor>(LGPDTaxonomy.RNE);
                 builder.SetFallbackRedactor<ErasingRedactor>();
             }
             else
@@ -50,12 +61,23 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<EnderecoRedactor>();
         services.TryAddSingleton<NomeRedactor>();
         services.TryAddSingleton<PixRedactor>();
+        services.TryAddSingleton<GuidRedactor>();
         services.TryAddSingleton<TelefoneRedactor>();
         services.TryAddSingleton<EnderecoIPRedactor>();
         services.TryAddSingleton<MacAddressRedactor>();
         services.TryAddSingleton<GeolocalizacaoRedactor>();
         services.TryAddSingleton<CNHRedactor>();
         services.TryAddSingleton<TituloEleitorRedactor>();
+        services.TryAddSingleton<PlacaRedactor>();
+        services.TryAddSingleton<RenavamRedactor>();
+        services.TryAddSingleton<PISRedactor>();
+        services.TryAddSingleton<CNSRedactor>();
+        services.TryAddSingleton<CTPSRedactor>();
+        services.TryAddSingleton<CertidaoRedactor>();
+        services.TryAddSingleton<DataGenericaRedactor>();
+        services.TryAddSingleton<ContaBancariaRedactor>();
+        services.TryAddSingleton<PassaporteRedactor>();
+        services.TryAddSingleton<RNERedactor>();
 
         services.TryAddSingleton<ILGPDRedactService, LGPDRedactService>();
 
