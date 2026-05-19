@@ -51,6 +51,7 @@ public static partial void LogNome(this ILogger logger, [NomeData] string nome);
 | `[CEPData]` | Mascara os 3 ultimos digitos | `01310-900` | `01310-***` |
 | `[NomeData]` | Mantem apenas as iniciais de cada palavra | `Maria da Silva` | `M**** d* S****` |
 | `[EnderecoData]` | Mantem apenas as iniciais, oculta numeros | `Avenida Paulista, 1000` | `A****** P*******, ****` |
+| `[GuidData]` | Mascara GUID mantendo 4 primeiros e 4 ultimos hex digitos | `e8d26618-2e11-4b22-8d26-66182e114b22` | `e8d2****-****-****-****-*******4b22` |
 | `[PixData]` | Mascara chave aleatoria mantendo 4 primeiros e 8 ultimos | `e8d26618-2e11-4b22-8d26-66182e114b22` | `e8d2****-****-****-****-****2e114b22` |
 | `[CartaoCreditoData]` | Preserva 4 primeiros e 4 ultimos digitos | `4532 1178 9012 3456` | `4532 **** **** 3456` |
 | `[EnderecoIPData]` | Mascara os 2 ultimos octetos (IPv4) e os ultimos 3 grupos (IPv6) | `192.168.1.100` | `192.168.*.***` |
@@ -111,6 +112,7 @@ Cada valor do enum mapeia para um tipo de dado pessoal:
 | `Email` | Endereco de e-mail |
 | `CartaoCredito` | Número do cartão de crédito |
 | `CEP` | Código de Enderecamento Postal |
+| `Guid` | Identificador GUID/UUID |
 | `Pix` | Chave aleatória Pix |
 | `EnderecoIP` | Endereco IPv4 ou IPv6 |
 | `MacAddress` | Endereco MAC |

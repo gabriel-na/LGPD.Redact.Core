@@ -27,6 +27,7 @@ public static class ServiceCollectionExtensions
                 builder.SetRedactor<EmailRedactor>(LGPDTaxonomy.Email);
                 builder.SetRedactor<EnderecoRedactor>(LGPDTaxonomy.Endereco);
                 builder.SetRedactor<NomeRedactor>(LGPDTaxonomy.Nome);
+                builder.SetRedactor<GuidRedactor>(LGPDTaxonomy.Guid);
                 builder.SetRedactor<PixRedactor>(LGPDTaxonomy.Pix);
                 builder.SetRedactor<TelefoneRedactor>(LGPDTaxonomy.Telefone);
                 builder.SetRedactor<EnderecoIPRedactor>(LGPDTaxonomy.EnderecoIP);
@@ -60,6 +61,7 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<EnderecoRedactor>();
         services.TryAddSingleton<NomeRedactor>();
         services.TryAddSingleton<PixRedactor>();
+        services.TryAddSingleton<GuidRedactor>();
         services.TryAddSingleton<TelefoneRedactor>();
         services.TryAddSingleton<EnderecoIPRedactor>();
         services.TryAddSingleton<MacAddressRedactor>();

@@ -17,6 +17,9 @@ public static partial class Patterns
     [GeneratedRegex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")]
     public static partial Regex Email();
 
+    [GeneratedRegex(@"^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$", RegexOptions.IgnoreCase)]
+    public static partial Regex Guid();
+
     [GeneratedRegex(@"[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}", RegexOptions.IgnoreCase)]
     public static partial Regex PixChaveAleatoria();
 

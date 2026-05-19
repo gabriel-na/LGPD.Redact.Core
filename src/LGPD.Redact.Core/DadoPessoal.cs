@@ -10,6 +10,7 @@ public enum DadoPessoal
     Email,
     CartaoCredito,
     CEP,
+    Guid,
     Pix,
     EnderecoIP,
     MacAddress,

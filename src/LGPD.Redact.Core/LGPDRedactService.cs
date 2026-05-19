@@ -16,6 +16,7 @@ public class LGPDRedactService : ILGPDRedactService
         [DadoPessoal.Email] = LGPDTaxonomy.Email,
         [DadoPessoal.CartaoCredito] = LGPDTaxonomy.CartaoCredito,
         [DadoPessoal.CEP] = LGPDTaxonomy.CEP,
+        [DadoPessoal.Guid] = LGPDTaxonomy.Guid,
         [DadoPessoal.Pix] = LGPDTaxonomy.Pix,
         [DadoPessoal.EnderecoIP] = LGPDTaxonomy.EnderecoIP,
         [DadoPessoal.MacAddress] = LGPDTaxonomy.MacAddress,

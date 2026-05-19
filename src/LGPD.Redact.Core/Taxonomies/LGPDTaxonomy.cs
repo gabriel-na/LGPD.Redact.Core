@@ -13,6 +13,7 @@ public static class LGPDTaxonomy
     public static DataClassification Email => new("LGPD", "Email");
     public static DataClassification CartaoCredito => new("LGPD", "CartaoCredito");
     public static DataClassification CEP => new("LGPD", "CEP");
+    public static DataClassification Guid => new("LGPD", "Guid");
     public static DataClassification Pix => new("LGPD", "PIX");
     public static DataClassification EnderecoIP => new("LGPD", "EnderecoIP");
     public static DataClassification MacAddress => new("LGPD", "MacAddress");
