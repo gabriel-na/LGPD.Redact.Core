@@ -8,7 +8,7 @@ public static partial class Patterns
     [GeneratedRegex(@"^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$")]
     public static partial Regex CPF();
 
-    [GeneratedRegex(@"^[A-Z0-9]{2}\.?[A-Z0-9]{3}\.?[A-Z0-9]{3}/?[A-Z0-9]{4}-?\d{2}$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"^[A-Z0-9]{2}\.?[A-Z0-9]{3}\.?[A-Z0-9]{3}/?[A-Z0-9]{4}-?[A-Z0-9]{2}$", RegexOptions.IgnoreCase)]
     public static partial Regex CNPJ();
 
     [GeneratedRegex(@"^(?:\+\d{3}\s\(\d{2}\)\s\d\s\d{4}-\d{4}|\+\d{3}\s\d{2}\s\d\s\d{8}|\+\d{3}\s\d{2}\s\d{9}|\(\d{2}\)\s\d\s\d{4}-\d{4}|\d{2}\s\d\s\d{4}-\d{4}|\d{2}\s\d\s\d{8}|\d{2}\s\d{9})$")]
