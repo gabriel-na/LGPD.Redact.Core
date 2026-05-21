@@ -1,13 +1,17 @@
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class GuidRedactor : Redactor
+public class GuidRedactor : LGPDRedactor
 {
+    public GuidRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal GuidRedactor() : base() { }
+
     protected virtual int PrefixHexCount => 4;
     protected virtual int SuffixHexCount => 4;
 
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    private int ResolvePrefix() => Options.Guid.PrefixHexCount ?? PrefixHexCount;
+    private int ResolveSuffix() => Options.Guid.SuffixHexCount ?? SuffixHexCount;
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -25,8 +29,8 @@ public class GuidRedactor : Redactor
             {
                 if (destination[i] == '-') continue;
                 hexIdx++;
-                if (hexIdx > PrefixHexCount && hexIdx <= totalHex - SuffixHexCount)
-                    destination[i] = '*';
+                if (hexIdx > ResolvePrefix() && hexIdx <= totalHex - ResolveSuffix())
+                    destination[i] = MaskChar;
             }
         }
 

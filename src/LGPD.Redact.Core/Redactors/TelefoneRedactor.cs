@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class TelefoneRedactor : Redactor
+public class TelefoneRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public TelefoneRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal TelefoneRedactor() : base() { }
     
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -35,7 +35,7 @@ public class TelefoneRedactor : Redactor
                     cur++;
                     
                     if (cur > 3 && cur <= (total - 4)) 
-                        destination[i] = '*';
+                        destination[i] = MaskChar;
                 }
             }
         }

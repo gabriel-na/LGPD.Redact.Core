@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class CPFRedactor : Redactor
+public class CPFRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public CPFRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal CPFRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -20,7 +20,7 @@ public class CPFRedactor : Redactor
                 { 
                     d++; 
                     if (d > 3 && d <= 9) 
-                        destination[i] = '*'; 
+                        destination[i] = MaskChar; 
                 }
             }
         }

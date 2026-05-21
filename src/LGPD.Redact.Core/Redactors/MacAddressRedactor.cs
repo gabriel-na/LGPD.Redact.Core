@@ -1,12 +1,12 @@
-using System;
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class MacAddressRedactor : Redactor
+public class MacAddressRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public MacAddressRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal MacAddressRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -26,7 +26,7 @@ public class MacAddressRedactor : Redactor
                     if (separatorsFound == 3) break;
                 }
                 if (char.IsLetterOrDigit(destination[i]))
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
             }
         }
 

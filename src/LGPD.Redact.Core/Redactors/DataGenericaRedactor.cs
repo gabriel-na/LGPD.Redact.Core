@@ -1,10 +1,11 @@
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class DataGenericaRedactor : Redactor
+public class DataGenericaRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public DataGenericaRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal DataGenericaRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -19,14 +20,14 @@ public class DataGenericaRedactor : Redactor
         {
             for (int i = 5; i < destination.Length; i++)
                 if (char.IsDigit(destination[i]))
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
         }
         else if (Patterns.DataBrasil().IsMatch(source))
         {
             int lastSlash = source.LastIndexOf('/');
             for (int i = 0; i < lastSlash; i++)
                 if (char.IsDigit(destination[i]))
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
         }
 
         return source.Length;

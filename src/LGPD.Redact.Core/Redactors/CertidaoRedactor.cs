@@ -1,10 +1,11 @@
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class CertidaoRedactor : Redactor
+public class CertidaoRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public CertidaoRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal CertidaoRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -24,7 +25,7 @@ public class CertidaoRedactor : Redactor
                 {
                     d++;
                     if (d > 6 && d <= totalDigits - 2)
-                        destination[i] = '*';
+                        destination[i] = MaskChar;
                 }
             }
         }

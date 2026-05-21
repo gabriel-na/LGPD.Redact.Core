@@ -1,8 +1,11 @@
 <Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/LGPD.Redact.SampleApi/LGPD.Redact.SampleApi.csproj" />
+  </Folder>
   <Folder Name="/src/">
-    <Project Path="src/LGPD.Redact.Core/LGPD.Redact.Core.csproj"/>
+    <Project Path="src/LGPD.Redact.Core/LGPD.Redact.Core.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/LGPD.Redact.UnitTests/LGPD.Redact.UnitTests.csproj"/>
+    <Project Path="tests/LGPD.Redact.UnitTests/LGPD.Redact.UnitTests.csproj" />
   </Folder>
 </Solution>

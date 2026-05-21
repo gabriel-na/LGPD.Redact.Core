@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class PlacaRedactor : Redactor
+public class PlacaRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public PlacaRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal PlacaRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -15,13 +15,13 @@ public class PlacaRedactor : Redactor
         {
             for (int i = 0; i < destination.Length; i++)
                 if (char.IsDigit(destination[i]))
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
         }
         else if (Patterns.PlacaMercosul().IsMatch(source))
         {
             for (int i = 3; i < destination.Length; i++)
                 if (char.IsLetterOrDigit(destination[i]))
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
         }
 
         return source.Length;

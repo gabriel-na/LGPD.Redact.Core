@@ -1,12 +1,12 @@
-using System;
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class GeolocalizacaoRedactor : Redactor
+public class GeolocalizacaoRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public GeolocalizacaoRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal GeolocalizacaoRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -22,7 +22,7 @@ public class GeolocalizacaoRedactor : Redactor
                 if (destination[i] == '.')
                 {
                     for (int j = i + 1; j < match.Index + match.Length && char.IsDigit(destination[j]); j++)
-                        destination[j] = '*';
+                        destination[j] = MaskChar;
                 }
             }
         }

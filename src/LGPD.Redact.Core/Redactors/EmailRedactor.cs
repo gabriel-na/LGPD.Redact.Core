@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class EmailRedactor : Redactor
+public class EmailRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public EmailRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal EmailRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -18,17 +18,15 @@ public class EmailRedactor : Redactor
             if (atIndex > 1)
             {
                 for (int i = 1; i < atIndex; i++)
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
             }
             else if (atIndex == 1)
             {
-                // Caso o e-mail tenha apenas uma letra antes do @ (ex: a@b.com)
-                // Mantemos como está ou mascaramos tudo antes do @ se preferir
             }
         }
         else
         {
-            destination.Fill('*');
+            destination.Fill(MaskChar);
         }
 
         return source.Length;

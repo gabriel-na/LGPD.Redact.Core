@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class TituloEleitorRedactor : Redactor
+public class TituloEleitorRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public TituloEleitorRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal TituloEleitorRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -20,7 +20,7 @@ public class TituloEleitorRedactor : Redactor
                 {
                     d++;
                     if (d > 4 && d <= 8)
-                        destination[i] = '*';
+                        destination[i] = MaskChar;
                 }
             }
         }

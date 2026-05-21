@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class CEPRedactor : Redactor
+public class CEPRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public CEPRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal CEPRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -21,7 +21,7 @@ public class CEPRedactor : Redactor
             {
                 if (char.IsDigit(destination[i]))
                 {
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
                     d++;
                 }
                 

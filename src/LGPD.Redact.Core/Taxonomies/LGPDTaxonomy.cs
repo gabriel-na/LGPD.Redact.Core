@@ -30,4 +30,34 @@ public static class LGPDTaxonomy
     public static DataClassification ContaBancaria => new("LGPD", "ContaBancaria");
     public static DataClassification Passaporte => new("LGPD", "Passaporte");
     public static DataClassification RNE => new("LGPD", "RNE");
+
+    internal static DataClassification FromDadoPessoal(DadoPessoal tipo) => tipo switch
+    {
+        DadoPessoal.CPF => CPF,
+        DadoPessoal.CNPJ => CNPJ,
+        DadoPessoal.Nome => Nome,
+        DadoPessoal.Endereco => Endereco,
+        DadoPessoal.Telefone => Telefone,
+        DadoPessoal.Email => Email,
+        DadoPessoal.CartaoCredito => CartaoCredito,
+        DadoPessoal.CEP => CEP,
+        DadoPessoal.Guid => Guid,
+        DadoPessoal.Pix => Pix,
+        DadoPessoal.EnderecoIP => EnderecoIP,
+        DadoPessoal.MacAddress => MacAddress,
+        DadoPessoal.Geolocalizacao => Geolocalizacao,
+        DadoPessoal.CNH => CNH,
+        DadoPessoal.TituloEleitor => TituloEleitor,
+        DadoPessoal.Placa => Placa,
+        DadoPessoal.Renavam => Renavam,
+        DadoPessoal.PIS => PIS,
+        DadoPessoal.CNS => CNS,
+        DadoPessoal.CTPS => CTPS,
+        DadoPessoal.Certidao => Certidao,
+        DadoPessoal.DataGenerica => DataGenerica,
+        DadoPessoal.ContaBancaria => ContaBancaria,
+        DadoPessoal.Passaporte => Passaporte,
+        DadoPessoal.RNE => RNE,
+        _ => throw new ArgumentOutOfRangeException(nameof(tipo)),
+    };
 }

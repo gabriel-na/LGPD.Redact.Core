@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class CartaoCreditoRedactor : Redactor
+public class CartaoCreditoRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public CartaoCreditoRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal CartaoCreditoRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -27,7 +27,7 @@ public class CartaoCreditoRedactor : Redactor
                     cur++; 
                     
                     if (cur > 4 && cur <= (total - 4)) 
-                        destination[i] = '*'; 
+                        destination[i] = MaskChar; 
                 }
             }
         }

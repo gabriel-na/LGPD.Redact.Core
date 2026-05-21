@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public abstract class IniciaisRedactor : Redactor
+public abstract class IniciaisRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    protected IniciaisRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal IniciaisRedactor() : base() { }
     
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -24,7 +24,7 @@ public abstract class IniciaisRedactor : Redactor
             if (char.IsLetter(destination[i]) && proximoEhInicial)
                 proximoEhInicial = false;
             else
-                destination[i] = '*';
+                destination[i] = MaskChar;
         }
         
         return source.Length;

@@ -1,10 +1,11 @@
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class ContaBancariaRedactor : Redactor
+public class ContaBancariaRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public ContaBancariaRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal ContaBancariaRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -21,7 +22,7 @@ public class ContaBancariaRedactor : Redactor
 
             for (int i = start; i < dashPos; i++)
                 if (char.IsDigit(destination[i]))
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
         }
 
         return source.Length;

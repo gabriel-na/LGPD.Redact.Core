@@ -1,12 +1,12 @@
-using System;
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class EnderecoIPRedactor : Redactor
+public class EnderecoIPRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public EnderecoIPRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal EnderecoIPRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -26,7 +26,7 @@ public class EnderecoIPRedactor : Redactor
                     continue;
                 }
                 if (dotsFound >= 2)
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
             }
         }
 
@@ -42,7 +42,7 @@ public class EnderecoIPRedactor : Redactor
                     continue;
                 }
                 if (colonsFound >= 5 && destination[i] != '.')
-                    destination[i] = '*';
+                    destination[i] = MaskChar;
             }
         }
 

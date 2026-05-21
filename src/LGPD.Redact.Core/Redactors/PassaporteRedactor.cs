@@ -1,10 +1,11 @@
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class PassaporteRedactor : Redactor
+public class PassaporteRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public PassaporteRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal PassaporteRedactor() : base() { }
 
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -28,7 +29,7 @@ public class PassaporteRedactor : Redactor
                 {
                     d++;
                     if (d <= total - 2)
-                        destination[i] = '*';
+                        destination[i] = MaskChar;
                 }
             }
         }

@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Extensions.Compliance.Redaction;
+using Microsoft.Extensions.Options;
 
 namespace LGPD.Redact.Core.Redactors;
 
-public class CNPJRedactor : Redactor
+public class CNPJRedactor : LGPDRedactor
 {
-    public override int GetRedactedLength(ReadOnlySpan<char> input) => input.Length;
+    public CNPJRedactor(IOptions<LGPDRedactOptions> options) : base(options) { }
+    internal CNPJRedactor() : base() { }
     
     public override int Redact(ReadOnlySpan<char> source, Span<char> destination)
     {
@@ -21,7 +21,7 @@ public class CNPJRedactor : Redactor
                 {
                     d++;
                     if (d > 2 && d <= 8) 
-                        destination[i] = '*';
+                        destination[i] = MaskChar;
                 }
             }
         }
