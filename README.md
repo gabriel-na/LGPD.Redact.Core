@@ -280,6 +280,14 @@ public class MeuServico
 
 ---
 
+## Projetos Relacionados
+
+| Projeto | Descrição |
+| :--- | :--- |
+| [LGPD.Redact.Serialization](https://github.com/gabriel-na/LGPD.Redact.Serialization) | Extensão para redação de dados em serialização JSON |
+
+---
+
 ## Licenca
 
 Distribuido sob a licenca MIT.
