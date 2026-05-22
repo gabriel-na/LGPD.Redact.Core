@@ -1,4 +1,4 @@
-# LGPD.Redact
+# LGPD.Redact.Core
 
 [![NuGet Version](https://img.shields.io/badge/nuget-v1.2.0-blue.svg)](https://www.nuget.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
