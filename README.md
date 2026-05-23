@@ -284,7 +284,7 @@ public class MeuServico
 
 | Projeto | Descrição |
 | :--- | :--- |
-| [EZ.Redact.Lgpd.Serialization](https://github.com/ez-dotnet/ez-redact-lgpd-serialization) | Extensão para redação de dados em serialização JSON |
+| [EZ.Redact.Lgpd.Json](https://github.com/ez-dotnet/ez-redact-lgpd-json) | Extensão para redação de dados em serialização JSON |
 
 ---
 
