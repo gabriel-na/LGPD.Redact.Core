@@ -1,0 +1,30 @@
+namespace EZ.Redact.Lgpd.Core;
+
+public enum DadoPessoal
+{
+    CPF,
+    CNPJ,
+    Nome,
+    Endereco,
+    Telefone,
+    Email,
+    CartaoCredito,
+    CEP,
+    Guid,
+    Pix,
+    EnderecoIP,
+    MacAddress,
+    Geolocalizacao,
+    CNH,
+    TituloEleitor,
+    Placa,
+    Renavam,
+    PIS,
+    CNS,
+    CTPS,
+    Certidao,
+    DataGenerica,
+    ContaBancaria,
+    Passaporte,
+    RNE,
+}

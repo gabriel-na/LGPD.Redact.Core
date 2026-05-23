@@ -18,7 +18,7 @@ Oferece dois modos de redação:
 ## Instalação
 
 ```bash
-dotnet add package LGPD.Redact.Core
+dotnet add package EZ.Redact.Lgpd.Core
 ```
 
 Registre os servicos no DI com `AddLGPDRedaction()`:
