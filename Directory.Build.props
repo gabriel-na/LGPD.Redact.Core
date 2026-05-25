@@ -12,13 +12,13 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-    <Version>1.2.0</Version>
+    <Version>2.1.0</Version>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>lgpd;redact;pii;data-privacy;compliance;brazil;cpf;cnpj</PackageTags>
-    <RepositoryUrl>https://github.com/gabriel-na/LGPD.Redact</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/gabriel-na/LGPD.Redact</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ez-dotnet/ez-redact-lgpd-core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ez-dotnet/ez-redact-lgpd-core</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 </Project>

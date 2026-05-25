@@ -1,0 +1,93 @@
+using System;
+using Microsoft.Extensions.Compliance.Classification;
+
+namespace EZ.Redact.Lgpd.Core.Taxonomies;
+
+public static class LGPDTaxonomy
+{
+    public static DataClassification CPF => new("LGPD", "CPF");
+    public static DataClassification CNPJ => new("LGPD", "CNPJ");
+    public static DataClassification Nome => new("LGPD", "Nome");
+    public static DataClassification Endereco => new("LGPD", "Endereco");
+    public static DataClassification Telefone => new("LGPD", "Telefone");
+    public static DataClassification Email => new("LGPD", "Email");
+    public static DataClassification CartaoCredito => new("LGPD", "CartaoCredito");
+    public static DataClassification CEP => new("LGPD", "CEP");
+    public static DataClassification Guid => new("LGPD", "Guid");
+    public static DataClassification Pix => new("LGPD", "PIX");
+    public static DataClassification EnderecoIP => new("LGPD", "EnderecoIP");
+    public static DataClassification MacAddress => new("LGPD", "MacAddress");
+    public static DataClassification Geolocalizacao => new("LGPD", "Geolocalizacao");
+    public static DataClassification CNH => new("LGPD", "CNH");
+    public static DataClassification TituloEleitor => new("LGPD", "TituloEleitor");
+    public static DataClassification Placa => new("LGPD", "Placa");
+    public static DataClassification Renavam => new("LGPD", "Renavam");
+    public static DataClassification PIS => new("LGPD", "PIS");
+    public static DataClassification CNS => new("LGPD", "CNS");
+    public static DataClassification CTPS => new("LGPD", "CTPS");
+    public static DataClassification Certidao => new("LGPD", "Certidao");
+    public static DataClassification DataGenerica => new("LGPD", "DataGenerica");
+    public static DataClassification ContaBancaria => new("LGPD", "ContaBancaria");
+    public static DataClassification Passaporte => new("LGPD", "Passaporte");
+    public static DataClassification RNE => new("LGPD", "RNE");
+
+    public static DataClassification FromDadoPessoal(DadoPessoal tipo) => tipo switch
+    {
+        DadoPessoal.CPF => CPF,
+        DadoPessoal.CNPJ => CNPJ,
+        DadoPessoal.Nome => Nome,
+        DadoPessoal.Endereco => Endereco,
+        DadoPessoal.Telefone => Telefone,
+        DadoPessoal.Email => Email,
+        DadoPessoal.CartaoCredito => CartaoCredito,
+        DadoPessoal.CEP => CEP,
+        DadoPessoal.Guid => Guid,
+        DadoPessoal.Pix => Pix,
+        DadoPessoal.EnderecoIP => EnderecoIP,
+        DadoPessoal.MacAddress => MacAddress,
+        DadoPessoal.Geolocalizacao => Geolocalizacao,
+        DadoPessoal.CNH => CNH,
+        DadoPessoal.TituloEleitor => TituloEleitor,
+        DadoPessoal.Placa => Placa,
+        DadoPessoal.Renavam => Renavam,
+        DadoPessoal.PIS => PIS,
+        DadoPessoal.CNS => CNS,
+        DadoPessoal.CTPS => CTPS,
+        DadoPessoal.Certidao => Certidao,
+        DadoPessoal.DataGenerica => DataGenerica,
+        DadoPessoal.ContaBancaria => ContaBancaria,
+        DadoPessoal.Passaporte => Passaporte,
+        DadoPessoal.RNE => RNE,
+        _ => throw new ArgumentOutOfRangeException(nameof(tipo)),
+    };
+
+    public static DadoPessoal ToDadoPessoal(DataClassification classification) => classification.Value switch
+    {
+        "CPF" => DadoPessoal.CPF,
+        "CNPJ" => DadoPessoal.CNPJ,
+        "Nome" => DadoPessoal.Nome,
+        "Endereco" => DadoPessoal.Endereco,
+        "Telefone" => DadoPessoal.Telefone,
+        "Email" => DadoPessoal.Email,
+        "CartaoCredito" => DadoPessoal.CartaoCredito,
+        "CEP" => DadoPessoal.CEP,
+        "Guid" => DadoPessoal.Guid,
+        "PIX" => DadoPessoal.Pix,
+        "EnderecoIP" => DadoPessoal.EnderecoIP,
+        "MacAddress" => DadoPessoal.MacAddress,
+        "Geolocalizacao" => DadoPessoal.Geolocalizacao,
+        "CNH" => DadoPessoal.CNH,
+        "TituloEleitor" => DadoPessoal.TituloEleitor,
+        "Placa" => DadoPessoal.Placa,
+        "Renavam" => DadoPessoal.Renavam,
+        "PIS" => DadoPessoal.PIS,
+        "CNS" => DadoPessoal.CNS,
+        "CTPS" => DadoPessoal.CTPS,
+        "Certidao" => DadoPessoal.Certidao,
+        "DataGenerica" => DadoPessoal.DataGenerica,
+        "ContaBancaria" => DadoPessoal.ContaBancaria,
+        "Passaporte" => DadoPessoal.Passaporte,
+        "RNE" => DadoPessoal.RNE,
+        _ => throw new ArgumentOutOfRangeException(nameof(classification), $"Unknown classification: {classification.Value}"),
+    };
+}

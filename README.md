@@ -1,10 +1,10 @@
-# LGPD.Redact
+# EZ.Redact.Lgpd.Core
 
 [![NuGet Version](https://img.shields.io/badge/nuget-v1.2.0-blue.svg)](https://www.nuget.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET 8.0+](https://img.shields.io/badge/.NET-8.0%2B%20|%209.0%2B%20|%2010.0%2B-512bd4.svg)](https://dotnet.microsoft.com/download)
 
-**LGPD.Redact** é uma biblioteca de alta performance para redação de dados sensíveis (PII) em conformidade com a LGPD. Construída sobre o framework oficial de conformidade da Microsoft, ela utiliza `Span<char>` para garantir alocação zero e máxima velocidade durante o processamento de logs, telemetria, e APIs REST.
+**EZ.Redact.Lgpd.Core** é uma biblioteca de alta performance para redação de dados sensíveis (PII) em conformidade com a LGPD. Construída sobre o framework oficial de conformidade da Microsoft, ela utiliza `Span<char>` para garantir alocação zero e máxima velocidade durante o processamento de logs, telemetria, e APIs REST.
 
 Oferece dois modos de redação:
 
@@ -18,7 +18,7 @@ Oferece dois modos de redação:
 ## Instalação
 
 ```bash
-dotnet add package LGPD.Redact.Core
+dotnet add package EZ.Redact.Lgpd.Core
 ```
 
 Registre os servicos no DI com `AddLGPDRedaction()`:
@@ -277,6 +277,17 @@ public class MeuServico
 | **Veículo** | `Placa` | Placa de veiculo (antiga ou Mercosul) |
 | | `Renavam` | Renavam do veiculo |
 | **Técnico** | `Guid` | Identificador GUID/UUID |
+
+---
+
+## Projetos Relacionados
+
+| Projeto | Descrição |
+| :--- | :--- |
+| [EZ.Redact.Lgpd.EntityFramework](https://github.com/ez-dotnet/ez-redact-lgpd-entityframework) | Extensão para redação de dados em consultas Entity Framework |
+| [EZ.Redact.Lgpd.Json](https://github.com/ez-dotnet/ez-redact-lgpd-json) | Extensão para redação de dados em serialização JSON |
+| [EZ.Redact.Lgpd.MongoDb](https://github.com/ez-dotnet/ez-redact-lgpd-mongodb) | Extensão para redação de dados em consultas MongoDB |
+| [EZ.Redact.Lgpd.Xml](https://github.com/ez-dotnet/ez-redact-lgpd-xml) | Extensão para redação de dados em serialização XML |
 
 ---
 
